@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AP Gov — Branches of Government & Civil Liberties</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0C2340;--navy2:#163356;--gold:#EF9F27;--gold-l:#FAEEDA;--gold-d:#854F0B;
+  --red:#C0392B;--red-l:#FCEBEB;--red-d:#7B241C;
+  --blue:#1A5276;--blue-l:#D6EAF8;--blue-d:#0C2340;
+  --teal:#0F6E56;--teal-l:#E1F5EE;--teal-d:#085041;
+  --gray:#F4F6F7;--border:#DDE1E4;
+  --txt:#1A1A2E;--txt2:#555770;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--txt);background:#fff;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--navy);display:flex;align-items:center;gap:0;padding:0 2rem;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--gold);letter-spacing:2px;padding:1rem 1.5rem 1rem 0;border-right:1px solid rgba(255,255,255,0.15);margin-right:1rem;white-space:nowrap;}
+.nav-links{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-link{color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;font-weight:500;padding:1rem 1rem;border-bottom:3px solid transparent;transition:all 0.2s;white-space:nowrap;}
+.nav-link:hover,.nav-link.active{color:#fff;border-bottom-color:var(--gold);}
+
+/* HERO */
+.hero{background:var(--navy);color:white;padding:5rem 2rem 4rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(255,255,255,0.02) 60px,rgba(255,255,255,0.02) 61px),repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(255,255,255,0.02) 60px,rgba(255,255,255,0.02) 61px);}
+.hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;}
+.hero-tag{display:inline-block;background:var(--gold);color:var(--navy);font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:2px;margin-bottom:1.25rem;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,5.5rem);line-height:0.95;letter-spacing:3px;margin-bottom:1.25rem;}
+.hero h1 span{color:var(--gold);}
+.hero p{font-size:16px;opacity:0.75;max-width:560px;line-height:1.8;}
+.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;}
+.stat{border-left:3px solid var(--gold);padding-left:1rem;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);line-height:1;}
+.stat-label{font-size:12px;opacity:0.6;text-transform:uppercase;letter-spacing:1px;}
+
+/* SECTIONS */
+.page-section{padding:4rem 2rem;max-width:1000px;margin:0 auto;}
+.section-header{margin-bottom:2.5rem;}
+.section-label{font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--gold-d);margin-bottom:0.5rem;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3rem);letter-spacing:2px;color:var(--navy);line-height:1;}
+.section-desc{font-size:15px;color:var(--txt2);margin-top:0.75rem;max-width:600px;line-height:1.7;}
+.divider{border:none;border-top:2px solid var(--gold);width:60px;margin:1rem 0;}
+
+/* BRANCHES */
+.branches-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:2.5rem;}
+.branch-card{border-radius:12px;overflow:hidden;border:1px solid var(--border);}
+.branch-header{padding:1.5rem;color:white;}
+.branch-header.legislative{background:var(--navy);}
+.branch-header.executive{background:var(--red);}
+.branch-header.judicial{background:var(--teal);}
+.branch-icon{font-size:2rem;margin-bottom:0.5rem;}
+.branch-name{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;}
+.branch-aka{font-size:12px;opacity:0.7;text-transform:uppercase;letter-spacing:1px;}
+.branch-body{padding:1.25rem;background:#fff;}
+.branch-fact{display:flex;gap:10px;align-items:flex-start;margin-bottom:0.75rem;font-size:13px;color:var(--txt2);line-height:1.5;}
+.branch-fact-icon{color:var(--gold-d);flex-shrink:0;margin-top:2px;}
+.branch-powers{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);}
+.branch-powers-title{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--txt2);margin-bottom:0.5rem;}
+.power-tag{display:inline-block;background:var(--gray);color:var(--txt2);font-size:11px;padding:3px 8px;border-radius:3px;margin:2px;}
+
+/* CHECKS */
+.checks-section{background:var(--gray);padding:3rem 2rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.checks-inner{max-width:1000px;margin:0 auto;}
+.checks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.5rem;}
+.check-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.25rem;}
+.check-from{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--txt2);margin-bottom:4px;}
+.check-title{font-weight:500;font-size:14px;margin-bottom:6px;}
+.check-desc{font-size:13px;color:var(--txt2);line-height:1.6;}
+.check-arrow{display:inline-block;background:var(--gold-l);color:var(--gold-d);font-size:11px;padding:2px 8px;border-radius:3px;margin-bottom:8px;}
+
+/* CIVIL LIBERTIES */
+.amendments-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:2rem;}
+.amend-card{border:1px solid var(--border);border-radius:10px;padding:1.25rem;cursor:pointer;transition:all 0.2s;background:#fff;}
+.amend-card:hover{border-color:var(--navy);box-shadow:0 4px 12px rgba(12,35,64,0.08);}
+.amend-card.open{border-color:var(--navy);background:var(--blue-l);}
+.amend-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;color:var(--navy);opacity:0.12;float:right;margin-left:8px;}
+.amend-badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:3px;margin-bottom:6px;}
+.amend-badge.first{background:var(--teal-l);color:var(--teal-d);}
+.amend-badge.fourth{background:var(--blue-l);color:var(--blue-d);}
+.amend-badge.fifth{background:var(--gold-l);color:var(--gold-d);}
+.amend-badge.sixth{background:#EAF3DE;color:#27500A;}
+.amend-badge.eighth{background:var(--red-l);color:var(--red-d);}
+.amend-badge.fourteenth{background:#F4ECF7;color:#6C3483;}
+.amend-title{font-weight:500;font-size:15px;margin-bottom:4px;color:var(--txt);}
+.amend-preview{font-size:13px;color:var(--txt2);line-height:1.6;}
+.amend-expand{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:13px;color:var(--txt2);line-height:1.7;}
+.amend-card.open .amend-expand{display:block;}
+.amend-case{background:#fff;border-radius:6px;padding:8px 12px;margin-top:8px;border-left:3px solid var(--navy);font-size:12px;}
+.amend-case strong{color:var(--navy);display:block;margin-bottom:2px;}
+
+/* CASES */
+.cases-list{display:flex;flex-direction:column;gap:1rem;}
+.case-row{display:grid;grid-template-columns:80px 1fr auto;gap:1rem;align-items:start;background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.25rem;transition:all 0.2s;}
+.case-row:hover{border-color:var(--navy);box-shadow:0 2px 8px rgba(12,35,64,0.06);}
+.case-year{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--gold-d);line-height:1.1;}
+.case-name{font-weight:500;font-size:15px;margin-bottom:4px;}
+.case-desc{font-size:13px;color:var(--txt2);line-height:1.6;}
+.case-tag{font-size:11px;font-weight:500;padding:3px 10px;border-radius:3px;background:var(--gold-l);color:var(--gold-d);white-space:nowrap;align-self:start;}
+
+/* QUIZ */
+.quiz-section{background:var(--navy);color:white;padding:4rem 2rem;}
+.quiz-inner{max-width:700px;margin:0 auto;}
+.quiz-header{margin-bottom:2rem;}
+.quiz-header .section-label{color:var(--gold);}
+.quiz-header .section-title{color:white;}
+.quiz-header .section-desc{color:rgba(255,255,255,0.65);}
+.q-progress{display:flex;gap:6px;margin-bottom:2rem;}
+.q-pip{height:4px;flex:1;background:rgba(255,255,255,0.2);border-radius:2px;transition:background 0.3s;}
+.q-pip.done{background:var(--gold);}
+.q-pip.active{background:rgba(255,255,255,0.6);}
+.q-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:2rem;}
+.q-label{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:0.75rem;}
+.q-text{font-size:17px;font-weight:500;line-height:1.5;margin-bottom:1.5rem;}
+.q-opts{display:flex;flex-direction:column;gap:8px;}
+.q-opt{padding:12px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:white;font-size:14px;cursor:pointer;text-align:left;transition:all 0.15s;font-family:'DM Sans',sans-serif;}
+.q-opt:hover:not(:disabled){background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.4);}
+.q-opt.correct{background:rgba(39,80,10,0.5);border-color:#97C459;}
+.q-opt.wrong{background:rgba(192,57,43,0.4);border-color:#E24B4A;}
+.q-feedback{margin-top:1rem;font-size:13px;line-height:1.7;padding:12px 16px;border-radius:8px;display:none;}
+.q-feedback.show{display:block;}
+.q-feedback.correct{background:rgba(39,80,10,0.3);border:1px solid #97C459;}
+.q-feedback.wrong{background:rgba(192,57,43,0.3);border:1px solid #E24B4A;}
+.q-next{margin-top:1.25rem;padding:12px 24px;background:var(--gold);color:var(--navy);border:none;border-radius:8px;font-weight:500;font-size:14px;cursor:pointer;display:none;font-family:'DM Sans',sans-serif;}
+.q-next:hover{opacity:0.9;}
+.score-display{text-align:center;padding:2rem;}
+.score-big{font-family:'Bebas Neue',sans-serif;font-size:6rem;color:var(--gold);line-height:1;}
+.score-msg{font-size:18px;margin-top:0.5rem;opacity:0.8;}
+.score-sub{font-size:14px;opacity:0.6;margin-top:0.5rem;}
+.retry-btn{margin-top:1.5rem;padding:12px 28px;background:transparent;color:var(--gold);border:2px solid var(--gold);border-radius:8px;font-weight:500;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.retry-btn:hover{background:var(--gold);color:var(--navy);}
+
+/* FOOTER */
+footer{background:var(--navy);color:rgba(255,255,255,0.5);text-align:center;padding:2rem;font-size:13px;}
+footer strong{color:var(--gold);}
+
+/* GLOSSARY */
+.glossary-section{background:var(--gray);padding:4rem 2rem;border-top:1px solid var(--border);}
+.glossary-inner{max-width:1000px;margin:0 auto;}
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.5rem;}
+.gl-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.25rem;}
+.gl-term{font-weight:500;font-size:14px;color:var(--navy);margin-bottom:4px;}
+.gl-def{font-size:13px;color:var(--txt2);line-height:1.6;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AP Gov</div>
+  <div class="nav-links">
+    <a class="nav-link active" href="#branches">Branches</a>
+    <a class="nav-link" href="#checks">Checks & Balances</a>
+    <a class="nav-link" href="#liberties">Civil Liberties</a>
+    <a class="nav-link" href="#cases">Landmark Cases</a>
+    <a class="nav-link" href="#quiz">Quiz</a>
+    <a class="nav-link" href="#glossary">Glossary</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">AP Government & Politics</div>
+    <h1>The U.S. <span>Government</span><br>Explained</h1>
+    <p>An interactive guide to the three branches of government, civil rights & liberties, and the landmark cases that shaped American democracy.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Branches of Gov</div></div>
+      <div class="stat"><div class="stat-num">10</div><div class="stat-label">Bill of Rights</div></div>
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Landmark Cases</div></div>
+      <div class="stat"><div class="stat-num">10</div><div class="stat-label">Quiz Questions</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANCHES -->
+<section id="branches" class="page-section">
+  <div class="section-header">
+    <div class="section-label">Section 01</div>
+    <div class="section-title">Three Branches of Government</div>
+    <hr class="divider"/>
+    <p class="section-desc">The Constitution divides federal power among three separate branches to prevent any single entity from becoming too powerful — a principle called separation of powers.</p>
+  </div>
+  <div class="branches-grid">
+    <div class="branch-card">
+      <div class="branch-header legislative">
+        <div class="branch-icon">🏛️</div>
+        <div class="branch-name">Legislative</div>
+        <div class="branch-aka">The Congress — Article I</div>
+      </div>
+      <div class="branch-body">
+        <div class="branch-fact"><span class="branch-fact-icon">▸</span><span><strong>Structure:</strong> Bicameral — Senate (100 members, 2 per state) and House of Representatives (435 members, based on population)</span></div>
+        <div class="branch-fact"><span class="branch-fact-icon">▸</span><span><strong>Term:</strong> Senators serve 6-year terms; Representatives serve 2-year terms</span></div>
+        <div class="branch-fact"><span class="branch-fact-icon">▸</span><span><strong>Requirements:</strong> Senate — 30 years old, 9 years a citizen. House — 25 years old, 7 years a citizen</span></div>
+        <div class="branch-powers">
+          <div class="branch-powers-title">Key Powers</div>
+          <span class="power-tag">Make laws</span>
+          <span class="power-tag">Declare war</span>
+          <span class="power-tag">Control budget</span>
+          <span class="power-tag">Confirm appointments</span>
+          <span class="power-tag">Override vetoes</span>
+          <span class="power-tag">Impeach officials</span>
+        </div>
+      </div>
+    </div>
+    <div class="branch-card">
+      <div class="branch-header executive">
+        <div class="branch-icon">🦅</div>
+        <div class="branch-name">Executive</div>
+        <div class="branch-aka">The President — Article II</div>
+      </div>
+      <div class="branch-body">
+        <div class="branch-fact"><span class="branch-fact-icon">▸</span><span><strong>Structure:</strong> President, Vice President, and Cabinet departments (15 total)</span></div>
+        <div class="branch-fact"><span class="branch-fact-icon">▸</span><span><strong>Term:</strong> 4-year terms, maximum of 2 terms (22nd Amendment)</span></div>
+        <div class="branch-fact"><span class="branch-fact-icon">▸</span><span><strong>Requirements:</strong> Natural-born citizen, at least 35 years old, 14 years a U.S. resident</span></div>
+        <div class="branch-powers">
+          <div class="branch-powers-title">Key Powers</div>
+          <span class="power-tag">Sign/veto laws</span>
+          <span class="power-tag">Command military</span>
+          <span class="power-tag">Make treaties</span>
+          <span class="power-tag">Appoint judges</span>
+          <span class="power-tag">Pardon power</span>
+          <span class="power-tag">Executive orders</span>
+        </div>
+      </div>
+    </div>
+    <div class="branch-card">
+      <div class="branch-header judicial">
+        <div class="branch-icon">⚖️</div>
+        <div class="branch-name">Judicial</div>
+        <div class="branch-aka">The Courts — Article III</div>
+      </div>
+      <div class="branch-body">
+        <div class="branch-fact"><span class="branch-fact-icon">▸</span><span><strong>Structure:</strong> Supreme Court (9 justices), 13 Circuit Courts of Appeals, 94 District Courts</span></div>
+        <div class="branch-fact"><span class="branch-fact-icon">▸</span><span><strong>Term:</strong> Lifetime appointment (to ensure judicial independence)</span></div>
+        <div class="branch-fact"><span class="branch-fact-icon">▸</span><span><strong>Appointed by:</strong> President, confirmed by Senate</span></div>
+        <div class="branch-powers">
+          <div class="branch-powers-title">Key Powers</div>
+          <span class="power-tag">Interpret laws</span>
+          <span class="power-tag">Judicial review</span>
+          <span class="power-tag">Rule laws unconstitutional</span>
+          <span class="power-tag">Hear federal cases</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKS & BALANCES -->
+<section id="checks" class="checks-section">
+  <div class="checks-inner">
+    <div class="section-header">
+      <div class="section-label">Section 02</div>
+      <div class="section-title">Checks & Balances</div>
+      <hr class="divider"/>
+      <p class="section-desc">Each branch has specific powers to limit the other two, ensuring no single branch becomes too dominant.</p>
+    </div>
+    <div class="checks-grid">
+      <div class="check-card">
+        <div class="check-arrow">Congress → President</div>
+        <div class="check-title">Override a Veto</div>
+        <div class="check-desc">Congress can override a presidential veto with a 2/3 majority vote in both chambers.</div>
+      </div>
+      <div class="check-card">
+        <div class="check-arrow">Congress → Courts</div>
+        <div class="check-title">Confirm Justices</div>
+        <div class="check-desc">Senate confirms or rejects Supreme Court nominations made by the President.</div>
+      </div>
+      <div class="check-card">
+        <div class="check-arrow">Congress → All</div>
+        <div class="check-title">Impeachment Power</div>
+        <div class="check-desc">House can impeach; Senate holds the trial. Can remove the President, VP, and federal judges.</div>
+      </div>
+      <div class="check-card">
+        <div class="check-arrow">President → Congress</div>
+        <div class="check-title">Veto Legislation</div>
+        <div class="check-desc">President can reject bills passed by Congress, sending them back for reconsideration.</div>
+      </div>
+      <div class="check-card">
+        <div class="check-arrow">President → Courts</div>
+        <div class="check-title">Nominate Judges</div>
+        <div class="check-desc">President nominates all federal judges and Supreme Court justices, shaping the judiciary for decades.</div>
+      </div>
+      <div class="check-card">
+        <div class="check-arrow">Courts → Congress & President</div>
+        <div class="check-title">Judicial Review</div>
+        <div class="check-desc">Established in Marbury v. Madison (1803) — courts can strike down laws or executive actions as unconstitutional.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CIVIL LIBERTIES -->
+<section id="liberties" class="page-section">
+  <div class="section-header">
+    <div class="section-label">Section 03</div>
+    <div class="section-title">Civil Liberties & the Bill of Rights</div>
+    <hr class="divider"/>
+    <p class="section-desc">Civil liberties are constitutional protections against government overreach. Click each amendment to expand its key rights and landmark cases.</p>
+  </div>
+  <div class="amendments-grid">
+    <div class="amend-card" onclick="toggleAmend(this)">
+      <div class="amend-num">1</div>
+      <div class="amend-badge first">1st Amendment</div>
+      <div class="amend-title">Freedom of Expression</div>
+      <div class="amend-preview">Protects speech, religion, press, assembly, and petition.</div>
+      <div class="amend-expand">
+        The 1st Amendment prohibits Congress from making laws respecting religion or restricting free speech, press, assembly, or the right to petition the government.
+        <div class="amend-case"><strong>Tinker v. Des Moines (1969)</strong>Students wearing black armbands to protest the Vietnam War is protected symbolic speech.</div>
+        <div class="amend-case"><strong>Engel v. Vitale (1962)</strong>School-sponsored prayer in public schools violates the Establishment Clause.</div>
+        <div class="amend-case"><strong>Texas v. Johnson (1989)</strong>Flag burning is protected political speech.</div>
+      </div>
+    </div>
+    <div class="amend-card" onclick="toggleAmend(this)">
+      <div class="amend-num">4</div>
+      <div class="amend-badge fourth">4th Amendment</div>
+      <div class="amend-title">Search & Seizure</div>
+      <div class="amend-preview">Protects against unreasonable searches and seizures by the government.</div>
+      <div class="amend-expand">
+        Requires law enforcement to have probable cause and a warrant to search your home or seize property. Evidence found in violation of this amendment is inadmissible (exclusionary rule).
+        <div class="amend-case"><strong>Mapp v. Ohio (1961)</strong>Evidence obtained through illegal searches cannot be used in state criminal trials.</div>
+        <div class="amend-case"><strong>Katz v. United States (1967)</strong>Wiretapping a phone booth without a warrant violates the 4th Amendment.</div>
+      </div>
+    </div>
+    <div class="amend-card" onclick="toggleAmend(this)">
+      <div class="amend-num">5</div>
+      <div class="amend-badge fifth">5th Amendment</div>
+      <div class="amend-title">Due Process & Self-Incrimination</div>
+      <div class="amend-preview">Right to remain silent; protects against double jeopardy and government taking property.</div>
+      <div class="amend-expand">
+        You cannot be forced to testify against yourself ("pleading the 5th"), tried twice for the same crime (double jeopardy), or deprived of life/liberty/property without due process of law.
+        <div class="amend-case"><strong>Miranda v. Arizona (1966)</strong>Police must inform suspects of their rights before interrogation.</div>
+      </div>
+    </div>
+    <div class="amend-card" onclick="toggleAmend(this)">
+      <div class="amend-num">6</div>
+      <div class="amend-badge sixth">6th Amendment</div>
+      <div class="amend-title">Right to a Fair Trial</div>
+      <div class="amend-preview">Guarantees a speedy trial, an impartial jury, and the right to an attorney.</div>
+      <div class="amend-expand">
+        Criminal defendants have the right to a speedy and public trial by an impartial jury, the right to confront witnesses, and the right to legal counsel.
+        <div class="amend-case"><strong>Gideon v. Wainwright (1963)</strong>States must provide an attorney to defendants who cannot afford one.</div>
+      </div>
+    </div>
+    <div class="amend-card" onclick="toggleAmend(this)">
+      <div class="amend-num">8</div>
+      <div class="amend-badge eighth">8th Amendment</div>
+      <div class="amend-title">Cruel & Unusual Punishment</div>
+      <div class="amend-preview">Prohibits excessive bail, excessive fines, and cruel and unusual punishment.</div>
+      <div class="amend-expand">
+        The government cannot impose punishments that are grossly disproportionate to the crime or that violate basic human dignity. This has been central to debates about the death penalty.
+        <div class="amend-case"><strong>Furman v. Georgia (1972)</strong>Temporarily halted capital punishment as applied arbitrarily and therefore cruel and unusual.</div>
+      </div>
+    </div>
+    <div class="amend-card" onclick="toggleAmend(this)">
+      <div class="amend-num">14</div>
+      <div class="amend-badge fourteenth">14th Amendment</div>
+      <div class="amend-title">Equal Protection & Due Process</div>
+      <div class="amend-preview">No state shall deny any person equal protection of the laws.</div>
+      <div class="amend-expand">
+        Ratified in 1868, the 14th Amendment has been the foundation for most civil rights advances. It applies the Bill of Rights to the states through selective incorporation.
+        <div class="amend-case"><strong>Brown v. Board of Education (1954)</strong>Racial segregation in public schools violates equal protection.</div>
+        <div class="amend-case"><strong>Obergefell v. Hodges (2015)</strong>Same-sex couples have a constitutional right to marry.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANDMARK CASES -->
+<section id="cases" style="background:var(--gray);padding:4rem 2rem;border-top:1px solid var(--border);">
+  <div style="max-width:1000px;margin:0 auto;">
+    <div class="section-header">
+      <div class="section-label">Section 04</div>
+      <div class="section-title">Landmark Supreme Court Cases</div>
+      <hr class="divider"/>
+      <p class="section-desc">These cases fundamentally changed American law and defined the scope of constitutional rights.</p>
+    </div>
+    <div class="cases-list">
+      <div class="case-row"><div class="case-year">1803</div><div><div class="case-name">Marbury v. Madison</div><div class="case-desc">Established judicial review — the Supreme Court's power to strike down laws that violate the Constitution. Chief Justice Marshall called it "emphatically the province of the judicial department to say what the law is."</div></div><span class="case-tag">Judicial Review</span></div>
+      <div class="case-row"><div class="case-year">1954</div><div><div class="case-name">Brown v. Board of Education</div><div class="case-desc">Unanimously ruled racial segregation in public schools unconstitutional, overturning Plessy v. Ferguson's "separate but equal" doctrine under the 14th Amendment's Equal Protection Clause.</div></div><span class="case-tag">Equal Protection</span></div>
+      <div class="case-row"><div class="case-year">1961</div><div><div class="case-name">Mapp v. Ohio</div><div class="case-desc">Applied the exclusionary rule to state courts — evidence obtained through illegal searches cannot be used at trial. Incorporated the 4th Amendment to the states via the 14th Amendment.</div></div><span class="case-tag">4th Amendment</span></div>
+      <div class="case-row"><div class="case-year">1963</div><div><div class="case-name">Gideon v. Wainwright</div><div class="case-desc">States must provide legal counsel to defendants in criminal cases who cannot afford an attorney, incorporating the 6th Amendment right to counsel to the states.</div></div><span class="case-tag">6th Amendment</span></div>
+      <div class="case-row"><div class="case-year">1966</div><div><div class="case-name">Miranda v. Arizona</div><div class="case-desc">Police must inform suspects of their right to remain silent and their right to an attorney before interrogation. Confessions obtained without Miranda warnings are inadmissible.</div></div><span class="case-tag">5th & 6th Amendment</span></div>
+      <div class="case-row"><div class="case-year">1969</div><div><div class="case-name">Tinker v. Des Moines</div><div class="case-desc">Students do not "shed their constitutional rights at the schoolhouse gate." Wearing black armbands to protest the Vietnam War is protected symbolic speech under the 1st Amendment.</div></div><span class="case-tag">1st Amendment</span></div>
+      <div class="case-row"><div class="case-year">1989</div><div><div class="case-name">Texas v. Johnson</div><div class="case-desc">Flag burning as political protest is protected symbolic speech under the 1st Amendment. The government cannot prohibit expression simply because society finds it deeply offensive.</div></div><span class="case-tag">1st Amendment</span></div>
+      <div class="case-row"><div class="case-year">2015</div><div><div class="case-name">Obergefell v. Hodges</div><div class="case-desc">Same-sex couples have a fundamental right to marry under both the Due Process and Equal Protection Clauses of the 14th Amendment. All states must recognize same-sex marriages.</div></div><span class="case-tag">14th Amendment</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" class="quiz-section">
+  <div class="quiz-inner">
+    <div class="quiz-header">
+      <div class="section-label">Section 05</div>
+      <div class="section-title">Test Your Knowledge</div>
+      <p class="section-desc">10 questions covering branches of government and civil liberties.</p>
+    </div>
+    <div id="quiz-container"></div>
+  </div>
+</section>
+
+<!-- GLOSSARY -->
+<section id="glossary" class="glossary-section">
+  <div class="glossary-inner">
+    <div class="section-header">
+      <div class="section-label">Section 06</div>
+      <div class="section-title">Key Terms & Glossary</div>
+      <hr class="divider"/>
+    </div>
+    <div class="glossary-grid">
+      <div class="gl-card"><div class="gl-term">Separation of Powers</div><div class="gl-def">The division of government into three branches (legislative, executive, judicial) so no single branch holds too much power.</div></div>
+      <div class="gl-card"><div class="gl-term">Checks & Balances</div><div class="gl-def">Each branch has specific powers to limit the other two, preventing any branch from becoming dominant.</div></div>
+      <div class="gl-card"><div class="gl-term">Judicial Review</div><div class="gl-def">The power of courts to review laws and executive actions and declare them unconstitutional. Established in Marbury v. Madison (1803).</div></div>
+      <div class="gl-card"><div class="gl-term">Civil Liberties</div><div class="gl-def">Constitutional protections against government interference in individual freedoms — speech, religion, privacy, due process.</div></div>
+      <div class="gl-card"><div class="gl-term">Civil Rights</div><div class="gl-def">Protections ensuring equal treatment under the law regardless of race, gender, religion, or other characteristics.</div></div>
+      <div class="gl-card"><div class="gl-term">Selective Incorporation</div><div class="gl-def">The process by which the Supreme Court has applied provisions of the Bill of Rights to the states via the 14th Amendment's Due Process Clause.</div></div>
+      <div class="gl-card"><div class="gl-term">Due Process</div><div class="gl-def">The legal requirement that the government must respect all rights owed to a person before depriving them of life, liberty, or property.</div></div>
+      <div class="gl-card"><div class="gl-term">Equal Protection Clause</div><div class="gl-def">14th Amendment clause prohibiting states from denying any person within their jurisdiction equal protection of the laws.</div></div>
+      <div class="gl-card"><div class="gl-term">Establishment Clause</div><div class="gl-def">1st Amendment clause preventing government from establishing an official religion or favoring one religion over another.</div></div>
+      <div class="gl-card"><div class="gl-term">Exclusionary Rule</div><div class="gl-def">Evidence obtained through illegal searches cannot be used in court. Established by Mapp v. Ohio and applied to states via the 14th Amendment.</div></div>
+      <div class="gl-card"><div class="gl-term">Bicameral Legislature</div><div class="gl-def">A two-chamber legislature — the U.S. Congress is divided into the Senate and the House of Representatives.</div></div>
+      <div class="gl-card"><div class="gl-term">Filibuster</div><div class="gl-def">A Senate tactic where a senator speaks at length to delay or block a vote. Requires 60 votes (cloture) to end a filibuster.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>AP Government & Politics</strong> — Interactive Study Guide<br/>
+  <span style="font-size:12px;opacity:0.6;">Built for educational purposes · Extra Credit Project</span>
+</footer>
+
+<script>
+function toggleAmend(card){
+  const wasOpen=card.classList.contains('open');
+  document.querySelectorAll('.amend-card').forEach(c=>c.classList.remove('open'));
+  if(!wasOpen)card.classList.add('open');
+}
+
+const questions=[
+  {q:"Which article of the Constitution establishes the Legislative Branch?",opts:["Article I","Article II","Article III","Article IV"],ans:0,exp:"Article I establishes Congress — both the Senate and the House of Representatives."},
+  {q:"How many members are in the U.S. Senate?",opts:["435","100","535","50"],ans:1,exp:"There are 100 Senators — 2 from each of the 50 states, regardless of population."},
+  {q:"Which Supreme Court case established the power of judicial review?",opts:["Brown v. Board","McCulloch v. Maryland","Marbury v. Madison","Roe v. Wade"],ans:2,exp:"Marbury v. Madison (1803) established that the Supreme Court can strike down laws that violate the Constitution."},
+  {q:"What is the minimum age requirement to serve as President of the United States?",opts:["25 years old","30 years old","35 years old","40 years old"],ans:2,exp:"The Constitution requires the President to be at least 35 years old, a natural-born citizen, and a U.S. resident for 14 years."},
+  {q:"The Miranda warning protects rights found in which amendments?",opts:["1st and 2nd","4th and 5th","5th and 6th","8th and 14th"],ans:2,exp:"Miranda v. Arizona (1966) was based on the 5th Amendment (right against self-incrimination) and 6th Amendment (right to counsel)."},
+  {q:"Which amendment prohibits cruel and unusual punishment?",opts:["5th Amendment","6th Amendment","7th Amendment","8th Amendment"],ans:3,exp:"The 8th Amendment prohibits excessive bail, excessive fines, and cruel and unusual punishment."},
+  {q:"In Tinker v. Des Moines, what did students do that the Court protected?",opts:["Distributed newspapers","Refused to say the Pledge","Wore black armbands","Organized a walkout"],ans:2,exp:"Students wore black armbands to protest the Vietnam War. The Court ruled this was protected symbolic speech under the 1st Amendment."},
+  {q:"How many justices currently sit on the U.S. Supreme Court?",opts:["7","8","9","11"],ans:2,exp:"The Supreme Court has 9 justices — one Chief Justice and eight Associate Justices. This number was set by Congress, not the Constitution."},
+  {q:"Which amendment was the foundation for Brown v. Board of Education?",opts:["1st Amendment","5th Amendment","10th Amendment","14th Amendment"],ans:3,exp:"Brown v. Board was decided under the 14th Amendment's Equal Protection Clause, which prohibits states from denying any person equal protection of the laws."},
+  {q:"What does the Establishment Clause of the 1st Amendment prohibit?",opts:["Free speech limits","Government-sponsored religion","Press censorship","Right to assemble"],ans:1,exp:"The Establishment Clause prevents the government from establishing an official religion or favoring one religion over another — as seen in Engel v. Vitale (1962)."}
+];
+
+let current=0,score=0,answered=new Array(questions.length).fill(false);
+
+function buildQuiz(){
+  const c=document.getElementById('quiz-container');
+  c.innerHTML='';
+  const prog=document.createElement('div');
+  prog.className='q-progress';
+  prog.id='q-progress';
+  questions.forEach((_,i)=>{
+    const p=document.createElement('div');
+    p.className='q-pip'+(i===0?' active':'');
+    p.id='pip-'+i;
+    prog.appendChild(p);
+  });
+  c.appendChild(prog);
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const existing=document.getElementById('q-card-wrap');
+  if(existing)existing.remove();
+  if(current>=questions.length){
+    showScore();return;
+  }
+  const q=questions[current];
+  const wrap=document.createElement('div');
+  wrap.id='q-card-wrap';
+  wrap.innerHTML=`<div class="q-card"><div class="q-label">Question ${current+1} of ${questions.length}</div><div class="q-text">${q.q}</div><div class="q-opts">${q.opts.map((o,i)=>`<button class="q-opt" onclick="answer(${i},this)">${o}</button>`).join('')}</div><div class="q-feedback" id="q-fb"></div><button class="q-next" id="q-next" onclick="nextQ()">${current===questions.length-1?'See Results →':'Next Question →'}</button></div>`;
+  document.getElementById('quiz-container').appendChild(wrap);
+}
+
+function answer(idx,btn){
+  if(answered[current])return;
+  answered[current]=true;
+  const q=questions[current];
+  document.querySelectorAll('.q-opt').forEach(o=>o.disabled=true);
+  const fb=document.getElementById('q-fb');
+  fb.classList.add('show');
+  if(idx===q.ans){
+    btn.classList.add('correct');
+    score++;
+    fb.className='q-feedback show correct';
+    fb.textContent='✓ Correct! '+q.exp;
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.q-opt')[q.ans].classList.add('correct');
+    fb.className='q-feedback show wrong';
+    fb.textContent='✗ Not quite. '+q.exp;
+  }
+  document.getElementById('q-next').style.display='block';
+  const pip=document.getElementById('pip-'+current);
+  pip.style.background=idx===q.ans?'#EF9F27':'#E24B4A';
+}
+
+function nextQ(){
+  current++;
+  if(current<questions.length){
+    const pip=document.getElementById('pip-'+current);
+    if(pip)pip.className='q-pip active';
+  }
+  renderQuestion();
+}
+
+function showScore(){
+  const wrap=document.createElement('div');
+  wrap.id='q-card-wrap';
+  const pct=Math.round((score/questions.length)*100);
+  const msg=pct>=90?'Outstanding! 🎉':pct>=70?'Great work! 💪':pct>=50?'Good effort! 📚':'Keep studying! 🔍';
+  wrap.innerHTML=`<div class="score-display"><div class="score-big">${score}/${questions.length}</div><div class="score-msg">${msg}</div><div class="score-sub">${pct}% — ${score} correct out of ${questions.length} questions</div><button class="retry-btn" onclick="resetQuiz()">Try Again</button></div>`;
+  document.getElementById('quiz-container').appendChild(wrap);
+}
+
+function resetQuiz(){
+  current=0;score=0;answered=new Array(questions.length).fill(false);
+  buildQuiz();
+}
+
+buildQuiz();
+
+// Active nav on scroll
+const sections=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id;});
+  document.querySelectorAll('.nav-link').forEach(l=>{
+    l.classList.toggle('active',l.getAttribute('href')==='#'+cur);
+  });
+});
+</script>
+</body>
+</html>
